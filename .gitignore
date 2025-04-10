@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+venv/
+
+# VS Code settings
+.vscode/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs and debug
+*.log
+
+# IDEs
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db

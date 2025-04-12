@@ -62,9 +62,9 @@ def extract_content(url):
     else:
         print("Not found content in article.post-content")
 
-# async def main():
-#     url = "https://khamphadisan.com.vn/cam-nang/"
-#     print(extract_domestic_experience_links(url=url))
+async def main():
+    url = "https://khamphadisan.com.vn/cam-nang/"
+    print(extract_domestic_experience_links(url=url))
 
-# if __name__ == "__main__":
-#     asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

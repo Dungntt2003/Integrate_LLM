@@ -5,6 +5,9 @@ from checkinVn import extract_all_article_links
 from datetime import datetime
 import json
 
+def clean_string(s):
+    return s.replace('\n', '').replace('*', '').replace('\\"', '')
+
 async def quick_parallel_example(funcExtract, base_url, className, file):
     urls = funcExtract(base_url)
 
@@ -21,7 +24,7 @@ async def quick_parallel_example(funcExtract, base_url, className, file):
         for res in results:
             results_data.append({
             "url": res.url,
-            "content": res.markdown,
+            "content": clean_string(res.markdown),
             "date": datetime.now().strftime("%Y-%m-%d")
             })
         else:

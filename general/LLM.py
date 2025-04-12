@@ -1,13 +1,17 @@
 import asyncio
 import json
+import os
+from dotenv import load_dotenv
 from crawl4ai import AsyncWebCrawler # type: ignore
 from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig # type: ignore
 from openai import OpenAI  # type: ignore
 
+load_dotenv()
+
 async def extract_structured_data(markdown_content, schema):
     client = OpenAI(
         base_url="https://openrouter.ai/api/v1",
-        api_key="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",  
+        api_key=os.getenv("API_KEY"),  
     )
     
     prompt = f"""

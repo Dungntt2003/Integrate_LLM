@@ -7,17 +7,15 @@ def save_to_chromadb(json_path, collection_name="travel_guide_improved"):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     
-    model = SentenceTransformer("keepitreal/vietnamese-sbert")
+    model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
     
     texts = []
     ids = []
     metadatas = []
     
     for i, item in enumerate(data):
-        # Làm giàu nội dung để embedding tốt hơn
         content = item["content"]
-        
-        # Thêm tiêu đề vào nội dung nếu có
+
         if item.get("title"):
             content = f"{item['title']}\n\n{content}"
         

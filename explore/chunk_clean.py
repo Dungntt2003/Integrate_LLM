@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("keepitreal/vietnamese-sbert")
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 def count_tokens(text):
     return len(tokenizer.encode(text, add_special_tokens=False))

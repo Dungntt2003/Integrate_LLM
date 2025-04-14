@@ -67,10 +67,10 @@ async def main():
 
     result = await crawl_and_extract(url, schema)
     parsed_data = json.loads(result.removeprefix("```json").removesuffix("```").strip())
-    with open("ai_price.json", "w", encoding="utf-8") as f:
-        json.dump(parsed_data, f, ensure_ascii=False, indent=2)
-    print("Save in file successfully")
-
+    # with open("ai_price.json", "w", encoding="utf-8") as f:
+    #     json.dump(parsed_data, f, ensure_ascii=False, indent=2)
+    # print("Save in file successfully")
+    print(parsed_data)
 
 if __name__ == "__main__":
 

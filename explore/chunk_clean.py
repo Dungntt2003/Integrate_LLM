@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+tokenizer = AutoTokenizer.from_pretrained("keepitreal/vietnamese-sbert")
 
 def count_tokens(text):
     return len(tokenizer.encode(text, add_special_tokens=False))
@@ -24,7 +24,6 @@ def split_content_semantic(text, max_tokens=1000):
             current_chunk = para + "\n\n"
             continue
             
-        # Kiểm tra độ dài token
         para_tokens = count_tokens(para)
         current_tokens = count_tokens(current_chunk)
         

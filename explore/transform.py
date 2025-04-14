@@ -7,7 +7,7 @@ def save_to_chromadb(json_path, collection_name="travel_guide_improved"):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     
-    model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+    model = SentenceTransformer("keepitreal/vietnamese-sbert")
     
     texts = []
     ids = []
@@ -31,14 +31,12 @@ def save_to_chromadb(json_path, collection_name="travel_guide_improved"):
         }
         metadatas.append(metadata)
     
-    # Tạo embeddings
     embeddings = model.encode(texts, show_progress_bar=True).tolist()
     
-    # Lưu vào ChromaDB
+
     chroma_client = chromadb.PersistentClient(path="/media/dell/New Volume/chromaDB")
     collection = chroma_client.get_or_create_collection(name=collection_name, metadata={"hnsw:space": "cosine"})
-    
-    # Thêm batch size để tránh lỗi khi có quá nhiều dữ liệu
+
     batch_size = 100
     for i in range(0, len(texts), batch_size):
         end = min(i + batch_size, len(texts))

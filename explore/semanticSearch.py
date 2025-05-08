@@ -2,7 +2,7 @@ from sentence_transformers import SentenceTransformer # type: ignore
 import chromadb # type: ignore
 from chromadb.config import Settings # type: ignore
 
-def search_with_hybrid(query, collection_name="travel_guide_improved", n_results=2):
+def search_with_hybrid(query, collection_name="travel_guide_improved", n_results=5):
     model = SentenceTransformer("keepitreal/vietnamese-sbert")
     chroma_client = chromadb.PersistentClient(path="/media/dell/New Volume/chromaDB")
     collection = chroma_client.get_collection(name=collection_name)
@@ -28,4 +28,4 @@ def search_with_hybrid(query, collection_name="travel_guide_improved", n_results
     return results
 
 if __name__ == "__main__":
-    search_with_hybrid("Đi đâu chơi dịp lễ 30/4")
+    search_with_hybrid("Huế, Đà Nẵng")

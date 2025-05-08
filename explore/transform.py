@@ -51,4 +51,4 @@ def save_to_chromadb(json_path, collection_name="travel_guide_improved"):
     print(f"✅ Đã lưu {len(texts)} chunks vào ChromaDB trong collection '{collection_name}'")
 
 if __name__ == "__main__":
-    save_to_chromadb("/home/dell/Crawl/explore/explore_chunk.json")
+    save_to_chromadb("/home/dell/Crawl/explore/merge.json")

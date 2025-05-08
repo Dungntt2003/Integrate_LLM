@@ -8,7 +8,7 @@ tokenizer = AutoTokenizer.from_pretrained("keepitreal/vietnamese-sbert")
 def count_tokens(text):
     return len(tokenizer.encode(text, add_special_tokens=False))
 
-def split_content_semantic(text, max_tokens=1000):
+def split_content_semantic(text, max_tokens=384):
     paragraphs = re.split(r'\n\s*\n', text)
     chunks = []
     current_chunk = ""
@@ -33,7 +33,6 @@ def split_content_semantic(text, max_tokens=1000):
             if current_chunk:
                 chunks.append(current_chunk.strip())
             
-            # Nếu đoạn quá dài, chia nhỏ hơn nữa
             if para_tokens > max_tokens:
                 sentences = re.split(r'(?<=[.!?])\s+', para)
                 temp_chunk = ""
@@ -70,10 +69,10 @@ def is_noise(text):
     return False
 
 def clean_markdown(text):
-    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)  # Bold text
-    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)  # Links
-    text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)  # Headers
-    text = re.sub(r'!\[.*?\]\(.*?\)', '', text)  # Images
+    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text) 
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)
+    text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)  
+    text = re.sub(r'!\[.*?\]\(.*?\)', '', text)
     return text
 
 def process_json_improved(input_path, output_path):
@@ -112,5 +111,25 @@ def process_json_improved(input_path, output_path):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(chunks, f, indent=2, ensure_ascii=False)
 
+import json
+
+def merge_json_files(file1_path, file2_path, output_path):
+
+    with open(file1_path, 'r', encoding='utf-8') as f1:
+        data1 = json.load(f1)
+    with open(file2_path, 'r', encoding='utf-8') as f2:
+        data2 = json.load(f2)
+
+    merged_data = data1 + data2
+    for i, chunk in enumerate(merged_data):
+        chunk["chunk_id"] = i
+    with open(output_path, 'w', encoding='utf-8') as f_out:
+        json.dump(merged_data, f_out, ensure_ascii=False, indent=2)
+    print(f"Merge successfully: {len(merged_data)}")
+    return merged_data
+
 if __name__ == "__main__":
-    process_json_improved("/home/dell/Crawl/explore/explore.json", "/home/dell/Crawl/explore/explore_chunk.json")
+    # process_json_improved("/home/dell/Crawl/explore/checkinVn.json", "/home/dell/Crawl/explore/checkinVn.json")
+    # process_json_improved("/home/dell/Crawl/explore/explore.json", "/home/dell/Crawl/explore/explore.json")
+    merged_data = merge_json_files('/home/dell/Crawl/explore/explore_chunk.json', '/home/dell/Crawl/explore/checkinVn.json', '/home/dell/Crawl/explore/merge.json')
+    

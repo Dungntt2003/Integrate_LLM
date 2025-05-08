@@ -3,7 +3,7 @@ import os
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("API_KEY"), 
+    api_key="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", 
 )
 
 def get_ai_response(user_input, context_chunks):
@@ -24,7 +24,7 @@ Dựa vào nội dung cẩm nang, hãy mô tả chi tiết hành trình du lịc
 """
 
     response = client.chat.completions.create(
-        model="google/gemma-3-12b-it:free",
+        model="deepseek/deepseek-prover-v2:free",
         extra_headers={
             "HTTP-Referer": "https://smarttrip.com", 
             "X-Title": "Trip Planner AI Assistant",

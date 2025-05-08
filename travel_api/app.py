@@ -20,7 +20,7 @@ def generate_description():
         if not related_chunks:
             return jsonify({"error": "No related context found from ChromaDB"}), 404
 
-        ai_response = get_ai_response(user_input, related_chunks)
+        ai_response = get_ai_response(user_input, "")
 
         return jsonify({"description": ai_response})
 

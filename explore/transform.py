@@ -38,6 +38,7 @@ def save_to_chromadb(json_path, collection_name="travel_guide_improved"):
     collection = chroma_client.get_or_create_collection(name=collection_name, metadata={"hnsw:space": "cosine"})
 
     batch_size = 100
+    # collection.delete(where={}) 
     for i in range(0, len(texts), batch_size):
         end = min(i + batch_size, len(texts))
         collection.add(

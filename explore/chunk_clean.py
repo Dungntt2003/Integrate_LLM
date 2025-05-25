@@ -1,6 +1,8 @@
 import json
 from datetime import datetime
 import re
+import os
+from pathlib import Path
 from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("keepitreal/vietnamese-sbert")
@@ -129,7 +131,10 @@ def merge_json_files(file1_path, file2_path, output_path):
     return merged_data
 
 if __name__ == "__main__":
-    # process_json_improved("/home/dell/Crawl/explore/checkinVn.json", "/home/dell/Crawl/explore/checkinVn.json")
-    # process_json_improved("/home/dell/Crawl/explore/explore.json", "/home/dell/Crawl/explore/explore.json")
-    merged_data = merge_json_files('/home/dell/Crawl/explore/explore_chunk.json', '/home/dell/Crawl/explore/checkinVn.json', '/home/dell/Crawl/explore/merge.json')
+    current_dir = Path(__file__).parent
+    explore_chunk_path = current_dir / 'explore_chunk.json'
+    checkin_vn_path = current_dir / 'checkinVn.json'
+    merge_path = current_dir / 'merge.json'
+    
+    merged_data = merge_json_files(str(explore_chunk_path), str(checkin_vn_path), str(merge_path))
     

@@ -1,9 +1,17 @@
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
+
+# parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+# dotenv_path = os.path.join(parent_dir, ".env")
+
+
+# load_dotenv(dotenv_path)
+# api_key = os.getenv("OPENROUTER_API_KEY")
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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", 
+    api_key="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", 
 )
 
 def get_ai_response(user_input, context_chunks):

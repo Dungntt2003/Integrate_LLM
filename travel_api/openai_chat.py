@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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", 
+    api_key="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", 
 )
 
 def get_ai_response(user_input, context_chunks):

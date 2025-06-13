@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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", 
+    api_key="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", 
 )
 
 def get_ai_response(user_input, context_chunks):
@@ -32,7 +32,7 @@ Dựa vào nội dung cẩm nang, hãy mô tả chi tiết hành trình du lịc
 """
 
     response = client.chat.completions.create(
-        model="deepseek/deepseek-prover-v2:free",
+        model="deepseek/deepseek-chat-v3-0324:free",
         extra_headers={
             "HTTP-Referer": "https://smarttrip.com", 
             "X-Title": "Trip Planner AI Assistant",

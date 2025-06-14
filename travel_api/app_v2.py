@@ -6,6 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def health_check():
+    return jsonify({"status": "API is running", "message": "Travel API v2"})
+
 @app.route("/api/generate-description", methods=["POST"])
 def generate_description():
     try:
@@ -18,14 +22,13 @@ def generate_description():
                 
         if not destination:
             return jsonify({"error": "No destination provided"}), 400
+        
         ai_response = get_ai_response(user_input, "")
-
         return jsonify({"description": ai_response})
 
     except Exception as e:
         print(f"Error occurred: {str(e)}")
         return jsonify({"error": f"Internal server error: {str(e)}"}), 500
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000)) 
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)

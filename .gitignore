@@ -6,8 +6,7 @@ venv/
 .vscode/
 
 general/
-explore/*.json
-explore/*.py
+explore/
 
 # Byte-compiled / cache files
 __pycache__/

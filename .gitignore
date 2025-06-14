@@ -5,7 +5,9 @@ venv/
 # VS Code settings
 .vscode/
 
-explore/chromaDB/
+general/
+explore/*.json
+explore/*.py
 
 # Byte-compiled / cache files
 __pycache__/

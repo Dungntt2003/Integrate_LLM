@@ -9,9 +9,21 @@ from dotenv import load_dotenv
 # load_dotenv(dotenv_path)
 # api_key = os.getenv("OPENROUTER_API_KEY")
 
+# client = OpenAI(
+#     base_url="https://openrouter.ai/api/v1",
+#     api_key="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", 
+# )
+load_dotenv()
+api_key = os.environ.get("OPENROUTER_API_KEY")
+print(f"API Key exists: {api_key is not None}")
+print(f"API Key length: {len(api_key) if api_key else 0}")
+
+if not api_key:
+    raise ValueError("OPENROUTER_API_KEY environment variable is required")
+
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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", 
+    api_key=api_key,
 )
 
 def get_ai_response(user_input, context_chunks):

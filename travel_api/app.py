@@ -19,12 +19,13 @@ def generate_description():
             return jsonify({"error": "No destination provided"}), 400
 
         results = search_with_hybrid(query=destination)
-        related_chunks = results["documents"][0] if results and "documents" in results else []
-
+        # print(f"Search results: {results}")
+        related_chunks = results["documents"] if results and "documents" in results else []
+        # print(f"Related chunks: {related_chunks}")
         if not related_chunks:
             return jsonify({"error": "No related context found from ChromaDB"}), 404
 
-        ai_response = get_ai_response(user_input, "")
+        ai_response = get_ai_response(user_input, related_chunks)
 
         return jsonify({"description": ai_response})
 

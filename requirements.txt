@@ -1,10 +1,6 @@
 flask
-chromadb
 openai 
 python-dotenv
-crawl4ai
 dotenv
-sentence_transformers
-transformers
 requests 
 beautifulsoup4

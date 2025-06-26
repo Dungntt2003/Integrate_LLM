@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT travel_api.app_v2:app
+web: gunicorn --timeout 180 --workers 2 --bind 0.0.0.0:$PORT travel_api.app_v2:app
